@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deepocean-app
+  namespace: deepocean
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: deepocean-app
+  template:
+    metadata:
+      labels:
+        app: deepocean-app
+    spec:
+      containers:
+      - name: app
+        image: rayanrawat/deepocean-app:latest
+        ports:
+        - containerPort: 5000
+        - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"

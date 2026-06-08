@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps { git 'https://github.com/rayanrawat/DeepOcean-Nexus.git' }
+        }
+        stage('Build Docker') {
+            steps { sh 'docker build -t rayanrawat/deepocean-app:latest app/' }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh 'echo $PASS | docker login -u $USER --password-stdin'
+                    sh 'docker push rayanrawat/deepocean-app:latest'
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps { sh 'kubectl apply -f kubernetes/' }
+        }
+    }
+}
