@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: rayanrawat/deepocean-app:latest
+        image: rayan221006/deepocean-app:latest
         ports:
         - containerPort: 5000
         - containerPort: 8000
