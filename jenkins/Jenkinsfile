@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('Clone') {
-            steps { git 'https://github.com/rayanrawat/DeepOcean-Nexus.git' }
+            steps { git 'https://github.com/Rayan-141/Deep_Ocean_Nexus_DevOps_Project.git' }
         }
         stage('Build Docker') {
             steps { sh 'docker build -t rayanrawat/deepocean-app:latest app/' }
