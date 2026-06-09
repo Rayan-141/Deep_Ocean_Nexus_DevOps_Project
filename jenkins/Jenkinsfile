@@ -5,7 +5,7 @@ pipeline {
 
         stage('Build Docker') {
             steps {
-                sh 'docker build -t rayanrawat/deepocean-app:latest app/'
+                sh 'docker build -t rayan221006/deepocean-app:latest app/'
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
                     )
                 ]) {
                     sh 'echo $PASS | docker login -u $USER --password-stdin'
-                    sh 'docker push rayanrawat/deepocean-app:latest'
+                    sh 'docker push rayan221006/deepocean-app:latest'
                 }
             }
         }
