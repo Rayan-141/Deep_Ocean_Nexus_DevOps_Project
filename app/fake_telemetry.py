@@ -21,6 +21,9 @@ import random
 from datetime import datetime, timezone
 from prometheus_client import Gauge
 
+# Use real station data as our active sensor count.
+import arcgis_client
+
 # ── Prometheus Gauges ──────────────────────────────────────────────────────────
 ACTIVE_CABLES   = Gauge('deepocean_active_cables',   'Number of active cables')
 THROUGHPUT_TBPS = Gauge('deepocean_throughput_tbps', 'Global throughput in Tbps')
@@ -95,7 +98,6 @@ def get_all_cables():
     cables = list(CABLE_FLEET)
     
     # Check if map data is already fetched and cached
-    import arcgis_client
     if arcgis_client._cache["data"]:
         try:
             map_cables = arcgis_client._cache["data"].get("cables", [])
@@ -213,9 +215,11 @@ def generate_noc_data():
     if not alerts:
         alerts.append({"cable": "SEA-ME-WE 5", "msg": "Scheduled maintenance — 02:00 UTC"})
 
+    station_count = len(arcgis_client.fetch_map_data().get("stations", []))
+
     return {
         "active_cables":   len(cables),
-        "active_sensors":  random.randint(24000, 28000),
+        "active_sensors":  station_count,
         "active_alerts":   degraded + critical * 2,
         "security_score":  security_sc,
         "throughput_tbps": throughput,
