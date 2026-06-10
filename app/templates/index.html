@@ -1089,7 +1089,7 @@ function renderDashboard(d) {
   var oceanColor = d.ocean_status === 'Normal' ? 'var(--green)' : 'var(--yellow)';
   el('execGrid').innerHTML =
     card('🔌', d.active_cables,                      'Active Cables',        '') +
-    card('📡', (d.active_sensors||0).toLocaleString(),'Active Sensors',       '') +
+    card('',    (d.active_sensors||0).toLocaleString(),'Station Count',       '') +
     card('🚨', d.active_alerts,                      'Active Alerts',        ' alert-card') +
     card('',   d.security_score + '%',               'Security Score',       ' secure-card') +
     card('',   d.throughput_tbps + ' Tbps',          'Total Throughput',     '') +
