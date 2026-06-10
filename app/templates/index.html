@@ -652,12 +652,6 @@
 
       <!-- Physical Environment moved INTO Cable Inspector (shows on click) -->
 
-      <!-- ── 6. DEVOPS ───────────────────────────────────────────── -->
-      <div class="panel">
-        <div class="panel-title"><span>⚙️</span> DevOps Infrastructure</div>
-        <div class="devops-grid" id="devopsGrid"><!-- JS --></div>
-      </div>
-
     </div><!-- /main-col -->
 
     <!-- ── RIGHT SIDEBAR — Alerts only. Security/DR/Physical Env open ──
@@ -1160,26 +1154,6 @@ function renderDashboard(d) {
   if (selectedCableName) {
     updateInspectorTelemetry();
   }
-
-  /* DevOps */
-  var dv = d.devops || {};
-  var devopsItems = [
-    { icon:'🐳', name:'Docker',     key:'docker' },
-    { icon:'⚙️', name:'Jenkins',    key:'jenkins' },
-    { icon:'☸️', name:'Kubernetes', key:'kubernetes' },
-    { icon:'📈', name:'HPA',        key:'hpa' },
-    { icon:'🔥', name:'Prometheus', key:'prometheus' },
-    { icon:'📊', name:'Grafana',    key:'grafana' },
-    { icon:'📋', name:'Fluent Bit', key:'fluent_bit' },
-    { icon:'🏗', name:'Terraform',  key:'terraform' },
-  ];
-  el('devopsGrid').innerHTML = devopsItems.map(function(item) {
-    return '<div class="devops-item">' +
-      '<div class="di-icon">' + item.icon + '</div>' +
-      '<div class="di-name">' + item.name + '</div>' +
-      '<div class="di-status">✔ ' + (dv[item.key] || 'Online') + '</div>' +
-    '</div>';
-  }).join('');
 
   /* Alerts — each item is clickable → calls onAlertClick → opens inspector */
   var alerts = d.alerts || [];
