@@ -87,8 +87,8 @@ CABLE_FLEET = [
     {"id": "southern-cross-next",        "name": "Southern Cross NEXT",     "route": "Sydney ↔ Los Angeles",       "length_km": 13700,  "owner": "Telstra, Singtel, Optus"},
 ]
 
-# Weighted random — mostly healthy
-STATUSES = ["HEALTHY", "HEALTHY", "HEALTHY", "HEALTHY", "DEGRADED", "DEGRADED", "CRITICAL"]
+# Weighted random — mostly healthy, DEGRADED and CRITICAL equally likely
+STATUSES = ["HEALTHY", "HEALTHY", "HEALTHY", "HEALTHY", "HEALTHY", "DEGRADED", "CRITICAL"]
 
 def get_all_cables():
     """
@@ -210,6 +210,9 @@ def generate_noc_data():
                 "Cable rupture — immediate failover active",
                 "Severe signal loss — backup route activated",
                 "System outage — disaster recovery engaged",
+                "Complete signal loss — system down",
+                "Major equipment failure detected",
+                "Subsea termination equipment malfunction",
             ])})
         elif c["status"] == "DEGRADED":
             alerts.append({"cable": c["name"], "msg": random.choice([
@@ -217,6 +220,11 @@ def generate_noc_data():
                 "High Latency detected",
                 "Signal degradation on segment",
                 "Maintenance window scheduled",
+                "Bitrate degradation — monitoring",
+                "Intermittent connectivity issues",
+                "Signal attenuation increasing",
+                "Transient bit errors detected",
+                "Partial equipment degradation",
             ])})
     if not alerts:
         alerts.append({"cable": "SEA-ME-WE 5", "msg": "Scheduled maintenance — 02:00 UTC"})
