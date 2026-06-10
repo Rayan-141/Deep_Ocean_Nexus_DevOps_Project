@@ -133,7 +133,7 @@ def generate_noc_data():
         pkt_loss = round(random.uniform(0, 2.5), 3)
         bw_pct = round(random.uniform(40, 99), 1)
         throughput = round(random.uniform(2.0, 12.0), 1)
-        avail = round(random.uniform(99.95, 99.999), 4)
+        avail = round(random.uniform(85.0, 99.0), 4)
         jitter = round(random.uniform(0.5, 5.0), 1)
         
         # Physical Environment
@@ -148,12 +148,12 @@ def generate_noc_data():
         threat = random.choice(["LOW", "LOW", "LOW", "MEDIUM", "HIGH"])
         ddos = "LOW" if threat == "LOW" else "MEDIUM"
         intrusion = random.randint(0, 4)
-        sec_score = round(random.uniform(96.0, 99.9), 1)
+        sec_score = round(random.uniform(85.0, 99.0), 1)
         
         # Disaster Recovery
         rto = random.randint(10, 20)
         rpo = random.randint(1, 5)
-        readiness = round(random.uniform(94.0, 99.0), 1)
+        readiness = round(random.uniform(85.0, 99.0), 1)
         
         cables.append({
             "id":              c.get("id", ""),
@@ -190,7 +190,7 @@ def generate_noc_data():
     throughput   = round(random.uniform(14.0, 22.0), 1)
     avg_latency  = round(random.uniform(40, 75), 1)
     avg_pkt_loss = round(random.uniform(0.1, 0.8), 3)
-    security_sc  = round(random.uniform(96.0, 99.9), 1)
+    security_sc  = round(random.uniform(85.0, 99.0), 1)
     threat_level = random.choice(["LOW", "LOW", "LOW", "MEDIUM", "HIGH"])
 
     ACTIVE_CABLES.set(len(cables))
@@ -228,7 +228,7 @@ def generate_noc_data():
             "throughput_tbps":    throughput,
             "latency_ms":         avg_latency,
             "packet_loss_pct":    avg_pkt_loss,
-            "availability_pct":   round(random.uniform(99.95, 99.999), 4),
+            "availability_pct":   round(random.uniform(85.0, 99.0), 4),
             "active_connections": f"{random.randint(28, 52)}M",
             "jitter_ms":          round(random.uniform(0.5, 4.5), 1),
             "bandwidth_util_pct": round(random.uniform(62, 89), 1),
@@ -263,7 +263,7 @@ def generate_noc_data():
             "rto_mins":        random.randint(10, 20),
             "rpo_mins":        random.randint(1, 5),
             "replication":     "ACTIVE",
-            "readiness_pct":   round(random.uniform(94, 99), 1),
+            "readiness_pct":   round(random.uniform(85.0, 99.0), 1),
         },
         "devops": {
             "docker":     "Healthy",
