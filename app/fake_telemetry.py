@@ -201,31 +201,54 @@ def generate_noc_data():
     PACKET_LOSS.set(avg_pkt_loss)
     SECURITY_SCORE.set(security_sc)
 
+    # Separate critical and degraded cables
+    critical_cables = [c for c in cables if c["status"] == "CRITICAL"]
+    degraded_cables = [c for c in cables if c["status"] == "DEGRADED"]
+    
+    # Reason messages for each alert type
+    critical_reasons = [
+        "Critical fault — rerouting traffic",
+        "Fiber cut detected — emergency repair initiated",
+        "Cable rupture — immediate failover active",
+        "Severe signal loss — backup route activated",
+        "System outage — disaster recovery engaged",
+        "Complete signal loss — system down",
+        "Major equipment failure detected",
+        "Subsea termination equipment malfunction",
+    ]
+    
+    degraded_reasons = [
+        "Packet Loss > 2%",
+        "High Latency detected",
+        "Signal degradation on segment",
+        "Maintenance window scheduled",
+        "Bitrate degradation — monitoring",
+        "Intermittent connectivity issues",
+        "Signal attenuation increasing",
+        "Transient bit errors detected",
+        "Partial equipment degradation",
+    ]
+    
+    # Randomly decide split (can be 1 critical + 5 degraded, 2+4, 3+3, 4+2, or 5+1)
+    # Goal: 6 alerts with balanced mix
+    possible_splits = [(1, 5), (2, 4), (3, 3), (4, 2), (5, 1)]
+    num_critical_alerts, num_degraded_alerts = random.choice(possible_splits)
+    
     alerts = []
-    for c in cables:
-        if c["status"] == "CRITICAL":
-            alerts.append({"cable": c["name"], "msg": random.choice([
-                "Critical fault — rerouting traffic",
-                "Fiber cut detected — emergency repair initiated",
-                "Cable rupture — immediate failover active",
-                "Severe signal loss — backup route activated",
-                "System outage — disaster recovery engaged",
-                "Complete signal loss — system down",
-                "Major equipment failure detected",
-                "Subsea termination equipment malfunction",
-            ])})
-        elif c["status"] == "DEGRADED":
-            alerts.append({"cable": c["name"], "msg": random.choice([
-                "Packet Loss > 2%",
-                "High Latency detected",
-                "Signal degradation on segment",
-                "Maintenance window scheduled",
-                "Bitrate degradation — monitoring",
-                "Intermittent connectivity issues",
-                "Signal attenuation increasing",
-                "Transient bit errors detected",
-                "Partial equipment degradation",
-            ])})
+    
+    # Generate alerts from randomly selected critical cables
+    selected_critical = random.sample(critical_cables, min(num_critical_alerts, len(critical_cables)))
+    for c in selected_critical:
+        alerts.append({"cable": c["name"], "msg": random.choice(critical_reasons)})
+    
+    # Generate alerts from randomly selected degraded cables
+    selected_degraded = random.sample(degraded_cables, min(num_degraded_alerts, len(degraded_cables)))
+    for c in selected_degraded:
+        alerts.append({"cable": c["name"], "msg": random.choice(degraded_reasons)})
+    
+    # Shuffle to randomize order (mix critical and degraded randomly)
+    random.shuffle(alerts)
+    
     if not alerts:
         alerts.append({"cable": "SEA-ME-WE 5", "msg": "Scheduled maintenance — 02:00 UTC"})
 
