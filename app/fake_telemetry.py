@@ -204,7 +204,13 @@ def generate_noc_data():
     alerts = []
     for c in cables:
         if c["status"] == "CRITICAL":
-            alerts.append({"cable": c["name"], "msg": "Critical fault — rerouting traffic"})
+            alerts.append({"cable": c["name"], "msg": random.choice([
+                "Critical fault — rerouting traffic",
+                "Fiber cut detected — emergency repair initiated",
+                "Cable rupture — immediate failover active",
+                "Severe signal loss — backup route activated",
+                "System outage — disaster recovery engaged",
+            ])})
         elif c["status"] == "DEGRADED":
             alerts.append({"cable": c["name"], "msg": random.choice([
                 "Packet Loss > 2%",
