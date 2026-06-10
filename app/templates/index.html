@@ -170,6 +170,7 @@
     .exec-card .ec-value { font-size: 26px; font-weight: 800; color: var(--text); font-family: 'JetBrains Mono',monospace; line-height: 1; white-space: nowrap; margin-top: auto; }
     .exec-card .ec-label { font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 10px; letter-spacing: .05em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; }
     .exec-card .ec-emoji { font-size: 22px; line-height: 1; vertical-align: middle; }
+    .exec-card.ocean-status .ec-emoji { font-size: 30px; }
     .exec-card.alert-card  .ec-value { color: var(--yellow); }
     .exec-card.secure-card .ec-value { color: var(--green); }
 
@@ -1098,7 +1099,7 @@ function renderDashboard(d) {
     card('🚨', d.active_alerts,                      'Active Alerts',        ' alert-card') +
     card('',   d.security_score + '%',               'Security Score',       ' secure-card') +
     card('',   d.throughput_tbps + ' Tbps',          'Total Throughput',     '') +
-    '<div class="exec-card">' +
+    '<div class="exec-card ocean-status">' +
       '<div class="ec-label"><span class="ec-emoji">⚓︎</span>Ocean Status</div>' +
       '<div class="ec-value" style="color:' + oceanColor + ';font-size:20px;white-space:nowrap;margin-top:auto;">' + d.ocean_status + '</div>' +
     '</div>';
