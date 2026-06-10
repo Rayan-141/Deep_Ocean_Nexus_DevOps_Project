@@ -220,7 +220,7 @@ def generate_noc_data():
     return {
         "active_cables":   len(cables),
         "active_sensors":  station_count,
-        "active_alerts":   degraded + critical * 2,
+        "active_alerts":   len(alerts),
         "security_score":  security_sc,
         "throughput_tbps": throughput,
         "ocean_status":    random.choice(["Normal", "Normal", "Normal", "Advisory"]),
