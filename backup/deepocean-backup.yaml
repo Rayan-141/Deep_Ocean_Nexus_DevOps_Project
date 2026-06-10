@@ -1,0 +1,1015 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2026-06-09T17:30:57+05:30"
+    creationTimestamp: "2026-06-09T12:00:57Z"
+    generateName: deepocean-app-7684bfccf9-
+    generation: 1
+    labels:
+      app: deepocean-app
+      pod-template-hash: 7684bfccf9
+    name: deepocean-app-7684bfccf9-fzj6d
+    namespace: deepocean
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: deepocean-app-7684bfccf9
+      uid: a70f53f2-916f-4f07-882d-010486c3741b
+    resourceVersion: "49487"
+    uid: 81378659-24e3-4cd5-9e35-f141e59cb142
+  spec:
+    containers:
+    - image: rayan221006/deepocean-app:latest
+      imagePullPolicy: Always
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /health
+          port: 5000
+          scheme: HTTP
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      name: app
+      ports:
+      - containerPort: 5000
+        protocol: TCP
+      - containerPort: 8000
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /health
+          port: 5000
+          scheme: HTTP
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-c4q4n
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: docker-desktop
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-c4q4n
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:03Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:00:57Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:14Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:14Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:00:57Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 100m
+        memory: 128Mi
+      containerID: docker://7893bc9eb871395209b193bf174bcc94e97058a29a06e34e08cb16c07df346f3
+      image: rayan221006/deepocean-app:latest
+      imageID: docker-pullable://rayan221006/deepocean-app@sha256:7cf95085211b8c9ea188d632fffd49abb5d076a4450ae6f000c4c32a2100c02d
+      lastState: {}
+      name: app
+      ready: true
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-06-09T12:01:02Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-c4q4n
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.65.3
+    hostIPs:
+    - ip: 192.168.65.3
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.1.0.22
+    podIPs:
+    - ip: 10.1.0.22
+    qosClass: Burstable
+    startTime: "2026-06-09T12:00:57Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2026-06-09T17:30:57+05:30"
+    creationTimestamp: "2026-06-09T12:01:14Z"
+    generateName: deepocean-app-7684bfccf9-
+    generation: 1
+    labels:
+      app: deepocean-app
+      pod-template-hash: 7684bfccf9
+    name: deepocean-app-7684bfccf9-h5b5j
+    namespace: deepocean
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: deepocean-app-7684bfccf9
+      uid: a70f53f2-916f-4f07-882d-010486c3741b
+    resourceVersion: "49548"
+    uid: 6afcfbdb-9f9d-4ce4-9538-641298a1f3f3
+  spec:
+    containers:
+    - image: rayan221006/deepocean-app:latest
+      imagePullPolicy: Always
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /health
+          port: 5000
+          scheme: HTTP
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      name: app
+      ports:
+      - containerPort: 5000
+        protocol: TCP
+      - containerPort: 8000
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /health
+          port: 5000
+          scheme: HTTP
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kddnw
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: docker-desktop
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-kddnw
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:19Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:14Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:30Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:30Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:14Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 100m
+        memory: 128Mi
+      containerID: docker://b4ed086a92fa80e6ba179c9652bab8b6024f96d43ba852e7fd1595a995dcec26
+      image: rayan221006/deepocean-app:latest
+      imageID: docker-pullable://rayan221006/deepocean-app@sha256:7cf95085211b8c9ea188d632fffd49abb5d076a4450ae6f000c4c32a2100c02d
+      lastState: {}
+      name: app
+      ready: true
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-06-09T12:01:18Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kddnw
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.65.3
+    hostIPs:
+    - ip: 192.168.65.3
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.1.0.23
+    podIPs:
+    - ip: 10.1.0.23
+    qosClass: Burstable
+    startTime: "2026-06-09T12:01:14Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2026-06-09T17:30:57+05:30"
+    creationTimestamp: "2026-06-09T12:01:30Z"
+    generateName: deepocean-app-7684bfccf9-
+    generation: 1
+    labels:
+      app: deepocean-app
+      pod-template-hash: 7684bfccf9
+    name: deepocean-app-7684bfccf9-v6hpq
+    namespace: deepocean
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: deepocean-app-7684bfccf9
+      uid: a70f53f2-916f-4f07-882d-010486c3741b
+    resourceVersion: "49618"
+    uid: 5b3569c8-0c4b-4993-88ee-8da7fb6c7079
+  spec:
+    containers:
+    - image: rayan221006/deepocean-app:latest
+      imagePullPolicy: Always
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /health
+          port: 5000
+          scheme: HTTP
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      name: app
+      ports:
+      - containerPort: 5000
+        protocol: TCP
+      - containerPort: 8000
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /health
+          port: 5000
+          scheme: HTTP
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-sj2pp
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: docker-desktop
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-sj2pp
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:35Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:30Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:48Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:48Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-09T12:01:30Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 100m
+        memory: 128Mi
+      containerID: docker://93c825c2bd4e8b0393c4c0a5890deb42697a3adcfa57251da2dbf9ffa37de888
+      image: rayan221006/deepocean-app:latest
+      imageID: docker-pullable://rayan221006/deepocean-app@sha256:7cf95085211b8c9ea188d632fffd49abb5d076a4450ae6f000c4c32a2100c02d
+      lastState: {}
+      name: app
+      ready: true
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-06-09T12:01:34Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-sj2pp
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.65.3
+    hostIPs:
+    - ip: 192.168.65.3
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.1.0.24
+    podIPs:
+    - ip: 10.1.0.24
+    qosClass: Burstable
+    startTime: "2026-06-09T12:01:30Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"deepocean-service","namespace":"deepocean"},"spec":{"ports":[{"nodePort":30000,"port":5000,"targetPort":5000}],"selector":{"app":"deepocean-app"},"type":"NodePort"}}
+    creationTimestamp: "2026-06-08T19:16:16Z"
+    name: deepocean-service
+    namespace: deepocean
+    resourceVersion: "3498"
+    uid: 1c9ca483-427d-442a-a44f-9d839461ccd0
+  spec:
+    clusterIP: 10.105.165.192
+    clusterIPs:
+    - 10.105.165.192
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30000
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+    selector:
+      app: deepocean-app
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "5"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"deepocean-app","namespace":"deepocean"},"spec":{"replicas":3,"selector":{"matchLabels":{"app":"deepocean-app"}},"template":{"metadata":{"labels":{"app":"deepocean-app"}},"spec":{"containers":[{"image":"rayan221006/deepocean-app:latest","livenessProbe":{"httpGet":{"path":"/health","port":5000},"initialDelaySeconds":10,"periodSeconds":5},"name":"app","ports":[{"containerPort":5000},{"containerPort":8000}],"readinessProbe":{"httpGet":{"path":"/health","port":5000},"initialDelaySeconds":10,"periodSeconds":5},"resources":{"limits":{"cpu":"200m","memory":"256Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}}]}}}}
+    creationTimestamp: "2026-06-08T19:16:16Z"
+    generation: 5
+    name: deepocean-app
+    namespace: deepocean
+    resourceVersion: "49633"
+    uid: e381fec9-0298-44bc-a371-cc01bc8f662a
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 3
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: deepocean-app
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2026-06-09T17:30:57+05:30"
+        labels:
+          app: deepocean-app
+      spec:
+        containers:
+        - image: rayan221006/deepocean-app:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          - containerPort: 8000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 3
+    conditions:
+    - lastTransitionTime: "2026-06-09T05:57:05Z"
+      lastUpdateTime: "2026-06-09T05:57:05Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-06-08T19:16:17Z"
+      lastUpdateTime: "2026-06-09T12:01:48Z"
+      message: ReplicaSet "deepocean-app-7684bfccf9" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 5
+    readyReplicas: 3
+    replicas: 3
+    updatedReplicas: 3
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "3"
+      deployment.kubernetes.io/max-replicas: "4"
+      deployment.kubernetes.io/revision: "3"
+      deployment.kubernetes.io/revision-history: "1"
+    creationTimestamp: "2026-06-08T19:16:17Z"
+    generation: 4
+    labels:
+      app: deepocean-app
+      pod-template-hash: 5ddfffd555
+    name: deepocean-app-5ddfffd555
+    namespace: deepocean
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: deepocean-app
+      uid: e381fec9-0298-44bc-a371-cc01bc8f662a
+    resourceVersion: "35010"
+    uid: 00f71a62-7edb-4fad-a7ca-13014468e5fe
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: deepocean-app
+        pod-template-hash: 5ddfffd555
+    template:
+      metadata:
+        labels:
+          app: deepocean-app
+          pod-template-hash: 5ddfffd555
+      spec:
+        containers:
+        - image: rayan221006/deepocean-app:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          - containerPort: 8000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 4
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "3"
+      deployment.kubernetes.io/max-replicas: "4"
+      deployment.kubernetes.io/revision: "5"
+    creationTimestamp: "2026-06-09T12:00:57Z"
+    generation: 3
+    labels:
+      app: deepocean-app
+      pod-template-hash: 7684bfccf9
+    name: deepocean-app-7684bfccf9
+    namespace: deepocean
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: deepocean-app
+      uid: e381fec9-0298-44bc-a371-cc01bc8f662a
+    resourceVersion: "49621"
+    uid: a70f53f2-916f-4f07-882d-010486c3741b
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        app: deepocean-app
+        pod-template-hash: 7684bfccf9
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2026-06-09T17:30:57+05:30"
+        labels:
+          app: deepocean-app
+          pod-template-hash: 7684bfccf9
+      spec:
+        containers:
+        - image: rayan221006/deepocean-app:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          - containerPort: 8000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 3
+    fullyLabeledReplicas: 3
+    observedGeneration: 3
+    readyReplicas: 3
+    replicas: 3
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "3"
+      deployment.kubernetes.io/max-replicas: "4"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2026-06-09T07:23:41Z"
+    generation: 2
+    labels:
+      app: deepocean-app
+      pod-template-hash: 794595cf87
+    name: deepocean-app-794595cf87
+    namespace: deepocean
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: deepocean-app
+      uid: e381fec9-0298-44bc-a371-cc01bc8f662a
+    resourceVersion: "34710"
+    uid: f9c77839-f4c0-496c-8c8c-053c7a8dd74d
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: deepocean-app
+        pod-template-hash: 794595cf87
+    template:
+      metadata:
+        labels:
+          app: deepocean-app
+          pod-template-hash: 794595cf87
+      spec:
+        containers:
+        - image: rayanrawat/deepocean-app:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          - containerPort: 8000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "3"
+      deployment.kubernetes.io/max-replicas: "4"
+      deployment.kubernetes.io/revision: "4"
+    creationTimestamp: "2026-06-09T07:33:04Z"
+    generation: 6
+    labels:
+      app: deepocean-app
+      pod-template-hash: 857494df9c
+    name: deepocean-app-857494df9c
+    namespace: deepocean
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: deepocean-app
+      uid: e381fec9-0298-44bc-a371-cc01bc8f662a
+    resourceVersion: "49631"
+    uid: 9276d7ed-3e86-4e42-945a-2a8dd4d93872
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: deepocean-app
+        pod-template-hash: 857494df9c
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2026-06-09T13:03:04+05:30"
+        labels:
+          app: deepocean-app
+          pod-template-hash: 857494df9c
+      spec:
+        containers:
+        - image: rayan221006/deepocean-app:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          - containerPort: 8000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 6
+    replicas: 0
+- apiVersion: autoscaling/v2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    creationTimestamp: "2026-06-09T12:55:17Z"
+    name: deepocean-app
+    namespace: deepocean
+    resourceVersion: "56823"
+    uid: 12fdc51b-67f4-41bc-9bfa-9683b0d9a3ff
+  spec:
+    maxReplicas: 10
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization
+      type: Resource
+    minReplicas: 3
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: deepocean-app
+  status:
+    conditions:
+    - lastTransitionTime: "2026-06-09T12:56:17Z"
+      message: recommended size matches current size
+      reason: ReadyForNewScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2026-06-09T12:56:17Z"
+      message: the HPA was able to successfully calculate a replica count from cpu
+        resource utilization (percentage of request)
+      reason: ValidMetricFound
+      status: "True"
+      type: ScalingActive
+    - lastTransitionTime: "2026-06-09T13:01:17Z"
+      message: the desired replica count is less than the minimum replica count
+      reason: TooFewReplicas
+      status: "True"
+      type: ScalingLimited
+    currentMetrics:
+    - resource:
+        current:
+          averageUtilization: 14
+          averageValue: 14m
+        name: cpu
+      type: Resource
+    currentReplicas: 3
+    desiredReplicas: 3
+kind: List
+metadata:
+  resourceVersion: ""

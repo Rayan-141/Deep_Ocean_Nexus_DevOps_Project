@@ -1,0 +1,202 @@
+[
+  {
+    "name": "2Africa",
+    "owner": "Meta Platforms, MTN, Orange, Telecom Egypt, Vodafone (21-member consortium)",
+    "length_km": 45000,
+    "rfs_year": 2024,
+    "countries": ["UK", "Portugal", "Spain", "France", "Nigeria", "Cameroon", "Ghana", "South Africa", "Kenya", "Tanzania", "Mozambique", "Madagascar", "Egypt", "Saudi Arabia", "UAE", "India", "33 total"],
+    "landing_stations": ["London", "Lisbon", "Lagos", "Cape Town", "Mombasa", "Mumbai", "Jeddah", "46 total"],
+    "website": "https://2africa.fb.com/",
+    "notes": "World's longest subsea cable. Encircles entire African continent."
+  },
+  {
+    "name": "SEA-ME-WE 5",
+    "owner": "Consortium: Orange, SingTel, Tata Communications, Telecom Italia, NTT, Telstra",
+    "length_km": 20000,
+    "rfs_year": 2016,
+    "countries": ["Singapore", "Myanmar", "Bangladesh", "Sri Lanka", "India", "Pakistan", "Oman", "UAE", "Saudi Arabia", "Egypt", "Italy", "France"],
+    "landing_stations": ["Singapore", "Colombo", "Mumbai", "Karachi", "Muscat", "Djibouti", "Suez", "Marseille"],
+    "website": "https://www.seamewe5.com/",
+    "notes": "South East Asia - Middle East - Western Europe route."
+  },
+  {
+    "name": "SEA-ME-WE 6",
+    "owner": "Consortium: Singtel, China Mobile, China Telecom, Bharti Airtel, Orange, Telin",
+    "length_km": 19200,
+    "rfs_year": 2025,
+    "countries": ["Singapore", "Thailand", "Bangladesh", "India", "Pakistan", "UAE", "Egypt", "France"],
+    "landing_stations": ["Singapore", "Chennai", "Mumbai", "Marseille"],
+    "website": "https://www.seamewe6.com/",
+    "notes": "Next-generation successor to SEA-ME-WE 5. Expected capacity: 100+ Tbps."
+  },
+  {
+    "name": "AAE-1",
+    "owner": "Consortium: du, Ooredoo, STC, Tata, Vodafone, China Unicom",
+    "length_km": 25000,
+    "rfs_year": 2017,
+    "countries": ["Hong Kong", "Vietnam", "Malaysia", "Singapore", "Thailand", "India", "Pakistan", "Oman", "UAE", "Qatar", "Egypt", "Greece", "France"],
+    "landing_stations": ["Hong Kong", "Singapore", "Mumbai", "Fujairah", "Marseille"],
+    "website": "https://www.aae-1.com/",
+    "notes": "Asia Africa Europe 1. One of the longest cables connecting Asia to Europe."
+  },
+  {
+    "name": "MAREA",
+    "owner": "Microsoft + Meta (Facebook)",
+    "length_km": 6600,
+    "rfs_year": 2017,
+    "countries": ["USA", "Spain"],
+    "landing_stations": ["Virginia Beach, USA", "Bilbao, Spain"],
+    "website": "https://news.microsoft.com/marea/",
+    "notes": "First dedicated subsea cable owned by tech hyperscalers. Capacity: 200 Tbps."
+  },
+  {
+    "name": "FASTER",
+    "owner": "Google, China Mobile International, Global Transit, KDDI, SingTel, PLDT",
+    "length_km": 9000,
+    "rfs_year": 2016,
+    "countries": ["USA", "Japan"],
+    "landing_stations": ["Bandon (Oregon, USA)", "Pacific City (Oregon, USA)", "Chikura (Japan)", "Shima (Japan)"],
+    "website": "https://cloud.google.com/blog/faster-cable",
+    "notes": "Trans-Pacific cable. Google's first major subsea investment. Capacity: 60 Tbps."
+  },
+  {
+    "name": "Dunant",
+    "owner": "Google",
+    "length_km": 6600,
+    "rfs_year": 2021,
+    "countries": ["USA", "France"],
+    "landing_stations": ["Virginia Beach, USA", "Saint-Hilaire-de-Riez, France"],
+    "website": "https://cloud.google.com/blog/dunant",
+    "notes": "Google's private trans-Atlantic cable. Named after Red Cross founder Henri Dunant. Capacity: 250 Tbps."
+  },
+  {
+    "name": "Equiano",
+    "owner": "Google",
+    "length_km": 15000,
+    "rfs_year": 2022,
+    "countries": ["Portugal", "Nigeria", "Togo", "South Africa", "Namibia", "St. Helena"],
+    "landing_stations": ["Lisbon", "Lagos", "Lome", "Cape Town", "Swakopmund"],
+    "website": "https://cloud.google.com/blog/equiano",
+    "notes": "Google's cable connecting Europe to Africa. Named after Olaudah Equiano."
+  },
+  {
+    "name": "JUPITER",
+    "owner": "Google, Meta (Facebook), PCCW Global, SoftBank, PLDT, Amazon",
+    "length_km": 14500,
+    "rfs_year": 2020,
+    "countries": ["USA", "Japan", "Philippines"],
+    "landing_stations": ["Los Angeles", "San Luis Obispo (USA)", "Chiba (Japan)", "Boso (Japan)", "Daet (Philippines)"],
+    "website": "https://cloud.google.com/blog/jupiter",
+    "notes": "Trans-Pacific cable. Largest subsea cable to Philippines. Capacity: 60 Tbps."
+  },
+  {
+    "name": "India Europe Xpress (IEX)",
+    "owner": "Reliance Jio (Jio Platforms)",
+    "length_km": 9775,
+    "rfs_year": 2024,
+    "countries": ["India", "Saudi Arabia", "Egypt", "Greece", "France"],
+    "landing_stations": ["Mumbai", "Jeddah", "Suez", "Athens", "Marseille"],
+    "website": "https://www.jio.com/",
+    "notes": "India's first privately owned international subsea cable."
+  },
+  {
+    "name": "Tata TGN-Eurasia",
+    "owner": "Tata Communications",
+    "length_km": 15000,
+    "rfs_year": 2004,
+    "countries": ["UK", "UAE", "India", "Singapore", "Japan", "Hong Kong"],
+    "landing_stations": ["London", "Dubai", "Mumbai", "Chennai", "Singapore", "Tokyo"],
+    "website": "https://www.tatacommunications.com/",
+    "notes": "Tata's flagship international cable linking UK to East Asia."
+  },
+  {
+    "name": "FLAG Europe Asia (FEA)",
+    "owner": "GCX (Global Cloud Xchange) — formerly Reliance Globalcom",
+    "length_km": 28000,
+    "rfs_year": 2001,
+    "countries": ["UK", "UAE", "India", "Malaysia", "Thailand", "Hong Kong", "Japan"],
+    "landing_stations": ["London", "Dubai", "Mumbai", "Singapore", "Hong Kong", "Tokyo"],
+    "website": "https://www.gcxco.com/",
+    "notes": "One of the longest cables in operation. FLAG = Fiber-optic Link Around the Globe."
+  },
+  {
+    "name": "SEACOM",
+    "owner": "SEACOM Ltd (African-owned consortium)",
+    "length_km": 17000,
+    "rfs_year": 2009,
+    "countries": ["South Africa", "Mozambique", "Tanzania", "Kenya", "India", "France"],
+    "landing_stations": ["Cape Town", "Maputo", "Dar es Salaam", "Mombasa", "Mumbai", "Marseille"],
+    "website": "https://seacom.com/",
+    "notes": "First privately-owned cable serving East Africa. Critical for African internet access."
+  },
+  {
+    "name": "EASSy",
+    "owner": "Consortium: Bharti Airtel, MTN, Vodacom, Telkom South Africa, and others",
+    "length_km": 10500,
+    "rfs_year": 2010,
+    "countries": ["Sudan", "Djibouti", "Somalia", "Kenya", "Tanzania", "Mozambique", "Madagascar", "South Africa"],
+    "landing_stations": ["Port Sudan", "Mombasa", "Dar es Salaam", "Cape Town"],
+    "website": "https://www.eassy.org/",
+    "notes": "Eastern Africa Submarine System. Connects East Africa coast from Sudan to South Africa."
+  },
+  {
+    "name": "Bay of Bengal Gateway (BBG)",
+    "owner": "Consortium: Bharti Airtel, Tata Communications, SingTel, Telekom Malaysia",
+    "length_km": 10900,
+    "rfs_year": 2017,
+    "countries": ["Malaysia", "Thailand", "Myanmar", "Bangladesh", "India", "Sri Lanka"],
+    "landing_stations": ["Kuala Lumpur", "Chennai", "Mumbai", "Colombo", "Cox's Bazar"],
+    "website": "https://www.bbgateway.net/",
+    "notes": "Serves Bay of Bengal region. Critical connectivity for South Asia."
+  },
+  {
+    "name": "PEACE Cable",
+    "owner": "PEACE Cable International Network (Pakistan, China, Europe consortium)",
+    "length_km": 15000,
+    "rfs_year": 2022,
+    "countries": ["Pakistan", "Djibouti", "Kenya", "Tanzania", "Mozambique", "South Africa", "France"],
+    "landing_stations": ["Karachi", "Djibouti", "Mombasa", "Marseille"],
+    "website": "https://www.peace-cable.com/",
+    "notes": "Pakistan-East Africa-Indian Ocean-Europe Cable. China-funded infrastructure."
+  },
+  {
+    "name": "SEA-ME-WE 4 (SMW4)",
+    "owner": "Consortium: France Telecom, SingTel, Bharti Airtel, Telecom Pakistan, and others",
+    "length_km": 18800,
+    "rfs_year": 2005,
+    "countries": ["Singapore", "Thailand", "Bangladesh", "Sri Lanka", "India", "Pakistan", "UAE", "Saudi Arabia", "Egypt", "Italy", "France", "Germany"],
+    "landing_stations": ["Singapore", "Colombo", "Mumbai", "Karachi", "Fujairah", "Suez", "Palermo", "Marseille", "Genoa"],
+    "website": "https://www.seamewe4.com/",
+    "notes": "South East Asia - Middle East - Western Europe 4. Backbone of internet across Indian Ocean."
+  },
+  {
+    "name": "SAFE",
+    "owner": "Consortium: Telkom South Africa, France Telecom, Bharti Airtel, Tata",
+    "length_km": 13000,
+    "rfs_year": 2002,
+    "countries": ["South Africa", "Réunion", "Mauritius", "India", "Malaysia"],
+    "landing_stations": ["Cape Town", "Mtunzini", "Colombo", "Chennai", "Penang"],
+    "website": "https://www.safe-cable.com/",
+    "notes": "South Africa Far East cable. Links southern Africa to Asia."
+  },
+  {
+    "name": "ACE (Africa Coast to Europe)",
+    "owner": "Orange (lead), Mauritius Telecom, Sonatel, Maroc Telecom, and others",
+    "length_km": 17000,
+    "rfs_year": 2012,
+    "countries": ["France", "Portugal", "Morocco", "Mauritania", "Senegal", "Guinea", "Ghana", "Nigeria", "Cameroon", "Gabon", "South Africa"],
+    "landing_stations": ["Paris", "Dakar", "Lagos", "Libreville", "Cape Town"],
+    "website": "https://www.ace-submarinecable.com/",
+    "notes": "Connects West Africa from France to South Africa. 24 landing points total."
+  },
+  {
+    "name": "SJC (South-East Asia Japan Cable)",
+    "owner": "Google, Bharti Airtel, KDDI, SingTel, PLDT, SoftBank, Global Transit",
+    "length_km": 8900,
+    "rfs_year": 2013,
+    "countries": ["Japan", "China", "Hong Kong", "Philippines", "Singapore"],
+    "landing_stations": ["Ajigaura (Japan)", "Chongming (China)", "Hong Kong", "Daet (Philippines)", "Singapore"],
+    "website": "https://www.sjcable.net/",
+    "notes": "Connects Japan to South East Asia. Google's first Asian subsea cable investment."
+  }
+]
