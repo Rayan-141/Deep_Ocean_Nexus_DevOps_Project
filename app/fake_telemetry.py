@@ -299,19 +299,21 @@ def generate_noc_data():
         if pool:
             alerts.append({"cable": pool[0]["name"], "msg": random.choice(degraded_reasons)})
 
-    # Shuffle and trim to 6 alerts
+    # Shuffle full alert list and trim to 6 for display. Keep full list length
     random.shuffle(alerts)
-    alerts = alerts[:6]
+    full_alerts = list(alerts)
+    display_alerts = full_alerts[:6]
 
-    if not alerts:
-        alerts.append({"cable": "SEA-ME-WE 5", "msg": "Scheduled maintenance — 02:00 UTC"})
+    if not full_alerts:
+        full_alerts = [{"cable": "SEA-ME-WE 5", "msg": "Scheduled maintenance — 02:00 UTC"}]
+        display_alerts = full_alerts[:6]
 
     station_count = len(arcgis_client.fetch_map_data().get("stations", []))
 
     return {
         "active_cables":   len(cables),
         "active_sensors":  station_count,
-        "active_alerts":   len(alerts),
+        "active_alerts":   len(full_alerts),
         "security_score":  security_sc,
         "throughput_tbps": throughput,
         "ocean_status":    random.choice(["Normal", "Normal", "Normal", "Advisory"]),
@@ -370,6 +372,6 @@ def generate_noc_data():
             "fluent_bit": "Running",
             "terraform":  "Provisioned",
         },
-        "alerts":    alerts[:6],
+        "alerts":    display_alerts,
         "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     }
