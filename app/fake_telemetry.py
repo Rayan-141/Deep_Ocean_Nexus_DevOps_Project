@@ -230,90 +230,35 @@ def generate_noc_data():
         "Partial equipment degradation",
     ]
 
-    # Choose a split for six alerts — prefer either 2 of one severity and 4 of the other
-    possible_splits = [(2, 4), (4, 2)]
-    num_critical_alerts, num_degraded_alerts = random.choice(possible_splits)
+    # Generate alerts from ALL critical and degraded cables
+    all_alerts = []
 
-    alerts = []
-    used_names = set()
+    # Generate one alert per critical cable (pick a random reason each time)
+    for c in critical_cables:
+        msg = random.choice(critical_reasons)
+        all_alerts.append({"cable": c["name"], "msg": msg})
 
-    # Helper to pick distinct reasons when possible
-    def assign_reasons(cables_list, n, reasons):
-        if not cables_list or n <= 0:
-            return []
-        picks = []
-        # choose cables (prefer given list order randomized)
-        if len(cables_list) >= n:
-            chosen = random.sample(cables_list, n)
-        else:
-            chosen = list(cables_list)
-        # build reason list without replacement when possible
-        if n <= len(reasons):
-            chosen_reasons = random.sample(reasons, n)
-        else:
-            chosen_reasons = [random.choice(reasons) for _ in range(n)]
+    # Generate one alert per degraded cable (pick a random reason each time)
+    for c in degraded_cables:
+        msg = random.choice(degraded_reasons)
+        all_alerts.append({"cable": c["name"], "msg": msg})
 
-        for c, r in zip(chosen, chosen_reasons):
-            picks.append({"cable": c["name"], "msg": r})
-        return picks
+    # Shuffle to randomize order (mix critical and degraded)
+    random.shuffle(all_alerts)
 
-    # Generate critical alerts (prefer actual critical cables)
-    critical_picks = assign_reasons(critical_cables, num_critical_alerts, critical_reasons)
-    used_names.update(p["cable"] for p in critical_picks)
+    # Display up to 6 alerts in the Live Alerts panel
+    display_alerts = all_alerts[:6]
 
-    # If we still need critical alerts but there weren't enough actual critical cables,
-    # fill from other pools (degraded/other) without duplicating cables.
-    if len(critical_picks) < num_critical_alerts:
-        need = num_critical_alerts - len(critical_picks)
-        pool = [c for c in cables if c["name"] not in used_names]
-        if pool:
-            extra = assign_reasons(pool, need, critical_reasons)
-            critical_picks += extra
-            used_names.update(p["cable"] for p in extra)
-
-    # Generate degraded alerts (prefer actual degraded cables)
-    degraded_pool = [c for c in degraded_cables if c["name"] not in used_names]
-    degraded_picks = assign_reasons(degraded_pool, num_degraded_alerts, degraded_reasons)
-    used_names.update(p["cable"] for p in degraded_picks)
-
-    # Fill remaining degraded alerts from any remaining cables if needed
-    if len(degraded_picks) < num_degraded_alerts:
-        need = num_degraded_alerts - len(degraded_picks)
-        pool = [c for c in cables if c["name"] not in used_names]
-        if pool:
-            extra = assign_reasons(pool, need, degraded_reasons)
-            degraded_picks += extra
-            used_names.update(p["cable"] for p in extra)
-
-    alerts = critical_picks + degraded_picks
-
-    # Ensure we have at least one of each severity; if not, force one from pool
-    has_critical = any("Critical" in a["msg"] or a["msg"] in critical_reasons for a in alerts)
-    has_degraded = any(a["msg"] in degraded_reasons for a in alerts)
-    if not has_critical:
-        pool = [c for c in cables if c["name"] not in used_names]
-        if pool:
-            alerts.append({"cable": pool[0]["name"], "msg": random.choice(critical_reasons)})
-    if not has_degraded:
-        pool = [c for c in cables if c["name"] not in used_names]
-        if pool:
-            alerts.append({"cable": pool[0]["name"], "msg": random.choice(degraded_reasons)})
-
-    # Shuffle full alert list and trim to 6 for display. Keep full list length
-    random.shuffle(alerts)
-    full_alerts = list(alerts)
-    display_alerts = full_alerts[:6]
-
-    if not full_alerts:
-        full_alerts = [{"cable": "SEA-ME-WE 5", "msg": "Scheduled maintenance — 02:00 UTC"}]
-        display_alerts = full_alerts[:6]
+    if not all_alerts:
+        all_alerts = [{"cable": "SEA-ME-WE 5", "msg": "Scheduled maintenance — 02:00 UTC"}]
+        display_alerts = all_alerts[:6]
 
     station_count = len(arcgis_client.fetch_map_data().get("stations", []))
 
     return {
         "active_cables":   len(cables),
         "active_sensors":  station_count,
-        "active_alerts":   len(full_alerts),
+        "active_alerts":   len(all_alerts),
         "security_score":  security_sc,
         "throughput_tbps": throughput,
         "ocean_status":    random.choice(["Normal", "Normal", "Normal", "Advisory"]),
