@@ -53,6 +53,7 @@ def map_data():
 
 # ── FAKE DATA: NOC telemetry (simulated, refreshes every 3 seconds) ───────────
 @app.route('/api/noc-status')
+@app.route('/noc-status')
 def noc_status():
     """
     Returns simulated NOC telemetry.
