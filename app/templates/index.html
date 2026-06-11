@@ -1288,7 +1288,7 @@ async function fetchNOCData() {
     console.error('NOC fetch error:', err);
   } finally {
     fetching = false;
-    setTimeout(fetchNOCData, 3000);
+    setTimeout(fetchNOCData, 1500);
   }
 }
 
@@ -1303,7 +1303,7 @@ async function fetchInitialNOCData() {
   } catch (err) {
     console.error('Initial NOC fetch error:', err);
   } finally {
-    setTimeout(fetchNOCData, 3000);
+    setTimeout(fetchNOCData, 1500);
   }
 }
 
