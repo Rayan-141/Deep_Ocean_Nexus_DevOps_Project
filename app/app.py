@@ -99,35 +99,12 @@ def metrics():
 
 
 # ── Entry point ────────────────────────────────────────────────────────────────
-def _find_free_port(start, attempts=20):
-    """Return the first free TCP port starting from `start`."""
-    for p in range(start, start + attempts):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            try:
-                s.bind(('', p))
-                return p
-            except OSError:
-                continue
-    return start   # Let Flask raise the error itself
+if __name__ == "__main__":
+    start_http_server(8000)
 
-
-if __name__ == '__main__':
-    # ── Prometheus metrics server (port 8000) ──────────────────────────────────
-    try:
-        start_http_server(8000)
-        print("[DeepOcean] ✅ Prometheus metrics  → http://0.0.0.0:8000")
-    except OSError as e:
-        print(f"[DeepOcean] ⚠️  Prometheus port 8000 busy, skipping ({e})")
-
-    # ── Flask dashboard (default 5001 to avoid macOS AirPlay on 5000) ─────────
-    # macOS Monterey+ binds AirPlay Receiver on port 5000.
-    # We use 5001 by default and auto-increment if that's busy too.
-    preferred = int(os.environ.get('PORT', 5000))
-    port      = _find_free_port(preferred)
-    if port != preferred:
-        print(f"[DeepOcean] ⚠️  Port {preferred} busy — using {port} instead")
-
-    print(f"[DeepOcean] 🚀 Dashboard          → http://127.0.0.1:{port}")
-    print(f"[DeepOcean] 📡 Metrics (Flask)    → http://127.0.0.1:{port}/metrics")
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=False
+    )
 
