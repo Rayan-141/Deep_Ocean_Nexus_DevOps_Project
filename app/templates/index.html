@@ -1174,6 +1174,51 @@ function renderDashboard(d) {
     : '<div style="color:var(--muted);font-size:12px;text-align:center;padding:20px 0;">✅ No active alerts</div>';
 }
 
+function renderDashboardSummary(d) {
+  var oceanColor = d.ocean_status === 'Normal' ? 'var(--green)' : 'var(--yellow)';
+  el('execGrid').innerHTML =
+    card('🔌', d.active_cables,                      'Active Cables',        '') +
+    card('',    (d.active_sensors||0).toLocaleString(),'Station Count',       '') +
+    card('🚨', d.active_alerts,                      'Active Alerts',        ' alert-card') +
+    card('',   d.security_score + '%',               'Security Score',       ' secure-card') +
+    card('',   d.throughput_tbps + ' Tbps',          'Total Throughput',     '') +
+    '<div class="exec-card ocean-status">' +
+      '<div class="ec-label"><span class="ec-emoji">⚓︎</span>Ocean Status</div>' +
+      '<div class="ec-value" style="color:' + oceanColor + ';font-size:20px;white-space:nowrap;margin-top:auto;">' + d.ocean_status + '</div>' +
+    '</div>';
+
+  el('ssHealthy').textContent  = d.healthy_cables;
+  el('ssDegraded').textContent = d.degraded_cables;
+  el('ssCritical').textContent = d.critical_cables;
+
+  var n = d.noc || {};
+  el('nocThroughput').textContent = fmt(n.throughput_tbps, ' Tbps');
+  el('nocAvail').textContent      = fmt(n.availability_pct, '%');
+  el('nocLatency').textContent    = fmt(n.latency_ms, ' ms');
+  el('nocConns').textContent      = n.active_connections || '—';
+  el('nocPktLoss').textContent    = fmt(n.packet_loss_pct, '%');
+  el('nocJitter').textContent     = fmt(n.jitter_ms, ' ms');
+  el('nocBW').textContent         = fmt(n.bandwidth_util_pct, '%');
+  el('nocDNS').textContent        = fmt(n.dns_resolve_ms, ' ms');
+
+  var alerts = d.alerts || [];
+  el('alertList').innerHTML = alerts.length
+    ? alerts.map(function(a) {
+        var isCrit = (a.msg||'').toLowerCase().indexOf('critical') !== -1;
+        var safeN  = (a.cable||'').replace(/'/g, '\u0027');
+        return '<div class="alert-item ' + (isCrit ? 'critical' : '') +
+          '" onclick="onAlertClick(\'' + safeN + '\')" style="cursor:pointer;">' +
+          '<div class="ai-header">' +
+            '<span><img src="' + (isCrit ? '/static/Red_Alert.gif' : '/static/Yellow_Alert.gif') + '" class="alert-indicator-img ' + (isCrit ? 'alert-indicator-critical' : 'alert-indicator-degraded') + '" alt="Alert Indicator" /></span>' +
+            '<span class="ai-cable">' + a.cable + '</span>' +
+          '</div>' +
+          '<div class="ai-msg">' + a.msg + '</div>' +
+          '<div class="ai-time">Just now · Click to inspect</div>' +
+        '</div>';
+      }).join('')
+    : '<div style="color:var(--muted);font-size:12px;text-align:center;padding:20px 0;">✅ No active alerts</div>';
+}
+
 
 /* ═══════════════════════════════════════════════════════════════════════
    onAlertClick — triggered when user clicks a Live Alert.
@@ -1221,17 +1266,48 @@ function card(icon, val, label, extra) {
 
 
 /* ═══════════════════════════════════════════════════════════════════════
-   SECTION 6 — FETCH LOOP (NOC telemetry every 3 s)
+   SECTION 6 — FETCH LOOP (NOC telemetry every 10 s)
    Map is loaded once on startup and stays static.
 ═══════════════════════════════════════════════════════════════════════ */
-function fetchNOCData() {
-  fetch('/api/noc-status')
-    .then(function(r) { return r.json(); })
-    .then(function(d) { renderDashboard(d); })
-    .catch(function(e) { console.error('NOC fetch error:', e); });
+let fetching = false;
+
+async function fetchNOCData() {
+  if (fetching) return;
+  fetching = true;
+
+  try {
+    const response = await fetch('/api/dashboard-summary');
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    renderDashboardSummary(data);
+  } catch (err) {
+    console.error('NOC fetch error:', err);
+  } finally {
+    fetching = false;
+    setTimeout(fetchNOCData, 10000);
+  }
 }
-setInterval(fetchNOCData, 3000);
-fetchNOCData();
+
+async function fetchInitialNOCData() {
+  try {
+    const response = await fetch('/api/noc-status');
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    const data = await response.json();
+    renderDashboard(data);
+  } catch (err) {
+    console.error('Initial NOC fetch error:', err);
+  } finally {
+    setTimeout(fetchNOCData, 10000);
+  }
+}
+
+fetchInitialNOCData();
 </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ ROUTES:
   /                    → Serves the dashboard HTML page
   /api/map-data        → REAL DATA  : submarine cable routes + landing stations (from ArcGIS)
   /api/noc-status      → FAKE DATA  : simulated NOC telemetry (refreshed every call)
+  /api/dashboard-summary → FAKE DATA : lightweight dashboard summary for polling
   /api/cable-status    → FAKE DATA  : same as noc-status (kept for backward compatibility)
   /health              → Health check (used by Kubernetes liveness probe)
   /version             → App version info
@@ -58,6 +59,30 @@ def noc_status():
     Physical Environment, Security, DR, DevOps data is all randomly generated.
     """
     return jsonify(fake_telemetry.generate_noc_data())
+
+
+# ── FAKE DATA: Lightweight dashboard summary for polling ────────────────────
+@app.route('/api/dashboard-summary')
+def dashboard_summary():
+    """
+    Returns only the fields required to refresh the dashboard summary and
+    live alert preview. This avoids sending the full cables + alerts payload
+    on every refresh.
+    """
+    data = fake_telemetry.generate_noc_data()
+    return jsonify({
+        'active_cables':   data['active_cables'],
+        'active_sensors':  data['active_sensors'],
+        'active_alerts':   data['active_alerts'],
+        'security_score':  data['security_score'],
+        'throughput_tbps': data['throughput_tbps'],
+        'ocean_status':    data['ocean_status'],
+        'healthy_cables':  data['healthy_cables'],
+        'degraded_cables': data['degraded_cables'],
+        'critical_cables': data['critical_cables'],
+        'noc':             data['noc'],
+        'alerts':          data['alerts'][:6],
+    })
 
 
 # ── REAL METADATA: Dynamic metadata lookup on click ──────────────────────────
