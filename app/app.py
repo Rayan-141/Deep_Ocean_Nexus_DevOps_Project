@@ -122,7 +122,7 @@ if __name__ == '__main__':
     # ── Flask dashboard (default 5001 to avoid macOS AirPlay on 5000) ─────────
     # macOS Monterey+ binds AirPlay Receiver on port 5000.
     # We use 5001 by default and auto-increment if that's busy too.
-    preferred = int(os.environ.get('PORT', 5001))
+    preferred = int(os.environ.get('PORT', 5000))
     port      = _find_free_port(preferred)
     if port != preferred:
         print(f"[DeepOcean] ⚠️  Port {preferred} busy — using {port} instead")
