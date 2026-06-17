@@ -776,19 +776,6 @@ kubectl rollout undo deployment/deepocean-app -n deepocean
 kubectl rollout status deployment/deepocean-app -n deepocean
 ```
 
----
-
-## 🖼️ Dashboard Preview
-
-### Live Alert Indicator
-![Live Alert Indicator](Live_Alert.gif)
-
-### Cable Search & Inspector
-![Cable Inspector](Search_Cable.png)
-
-> The dashboard features a **dark/light mode toggle**, a **real-time interactive world map** with 400+ submarine cable routes, a **live-scrolling NOC panel**, and an **Executive Summary** section with KPI cards updated every 3 seconds.
-
----
 
 ## 🎓 Project Context
 
@@ -827,7 +814,7 @@ This project is released under the [MIT License](LICENSE).
 
 <div align="center">
 
-**Built with 🌊 for the DeepOcean Nexus Case Study**
+**Built for the DeepOcean Nexus Case Study**
 
 *Rayan MZ · Roll No: 150096724141*
 
