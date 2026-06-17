@@ -2,7 +2,6 @@
 
 <img src="Logo_White.png" alt="DeepOcean Nexus Logo" width="180"/>
 
-# 🌊 DeepOcean Nexus
 ### Global Network Operations Center — Subsea Communications Infrastructure Platform
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
